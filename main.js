@@ -85,7 +85,7 @@ function displayCharacters(characters) {
         row.appendChild(nameField);
         row.appendChild(genderField);
         row.appendChild(bornField);
-
+        console.log(c);
         row.addEventListener("click", function() {
             viewCharacter(c);
         });
@@ -134,7 +134,12 @@ function viewCharacter(c) {
     characterView.classList.remove("hidden");
     searchView.classList.add("hidden");
 
-    characterImage.setAttribute("src", `${imgAPI}${characterChache.indexOf(c) + 1}.jpg`);
+    if(characterChache.indexOf(c) < 16) {
+        characterImage.setAttribute("src", `${imgAPI}${characterChache.indexOf(c) + 1}.jpg`);
+
+    } else {
+        characterImage.setAttribute("src", `${imgAPI}${characterChache.indexOf(c) + 2}.jpg`);
+    }
 
     characterFacts.innerHTML = "";
     
