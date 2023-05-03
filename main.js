@@ -14,7 +14,7 @@ const characterFacts = document.getElementById("character-facts");
 const swAPI = 'https://swapi.dev/api/people/';
 const imgAPI = 'https://starwars-visualguide.com/assets/img/characters/';
 
-const characterChache = [];
+const characterCache = [];
 let pageNumber = 1;
 let selectedCharacterId = 1;
 
@@ -23,7 +23,7 @@ searchField.addEventListener("input", function() {
     if (searchValue === undefined || searchValue.length === 0) {
         setPage(pageNumber);
     } else {
-        displayCharacters(characterChache.filter(c => c.name.toLowerCase().includes(searchValue.toLowerCase())).splice(0, 10));
+        displayCharacters(characterCache.filter(c => c.name.toLowerCase().includes(searchValue.toLowerCase())).splice(0, 10));
     }
 });
 
@@ -43,7 +43,6 @@ nextPageBtn.addEventListener("click", function() {
 
   function getCharacters(startPage, getAll) {
     return new Promise((res, rej) => {
-        // res([]);
         let dataList = [];
         function getPage(pageNumber) {
             const xhr = new XMLHttpRequest();
@@ -85,7 +84,7 @@ function displayCharacters(characters) {
         row.appendChild(nameField);
         row.appendChild(genderField);
         row.appendChild(bornField);
-        console.log(c);
+
         row.addEventListener("click", function() {
             viewCharacter(c);
         });
@@ -122,23 +121,23 @@ function getCharactersAtPage(p) {
     let startIndex = (p - 1) * 10;
     let endIndex = startIndex + 10;
 
-    if (startIndex > characterChache.length)
+    if (startIndex > characterCache.length)
         return [];
-    if (endIndex > characterChache.length) {
-        endIndex = characterChache.length;
+    if (endIndex > characterCache.length) {
+        endIndex = characterCache.length;
     }
-    return characterChache.slice(startIndex, endIndex);
+    return characterCache.slice(startIndex, endIndex);
 }
 
 function viewCharacter(c) {
     characterView.classList.remove("hidden");
     searchView.classList.add("hidden");
 
-    if(characterChache.indexOf(c) < 16) {
-        characterImage.setAttribute("src", `${imgAPI}${characterChache.indexOf(c) + 1}.jpg`);
+    if(characterCache.indexOf(c) < 16) {
+        characterImage.setAttribute("src", `${imgAPI}${characterCache.indexOf(c) + 1}.jpg`);
 
     } else {
-        characterImage.setAttribute("src", `${imgAPI}${characterChache.indexOf(c) + 2}.jpg`);
+        characterImage.setAttribute("src", `${imgAPI}${characterCache.indexOf(c) + 2}.jpg`);
     }
 
     characterFacts.innerHTML = "";
@@ -152,6 +151,6 @@ function closeCharacter() {
     characterView.classList.add("hidden");
 }
 getCharacters(1, true).then(d => {
-    characterChache.push(...d);
+    characterCache.push(...d);
     setPage(pageNumber);
 });
