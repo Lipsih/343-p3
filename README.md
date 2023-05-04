@@ -7,7 +7,7 @@ When you want to know more about a certain character and see their image, you ca
 This brings you to a new screen which has the image and numerous information about the character from swapi. The image comes from the
 other api used, starwars-visualguide api. There are also buttons to navigate the page so you can go back to the search screen.
 
-Requirements
+<ul>Requirements<\ul>
 deploy site
 -deployed on github pages
 is responsive
