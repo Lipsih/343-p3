@@ -10,13 +10,13 @@ other api used, starwars-visualguide api. There are also buttons to navigate the
 <ins>Requirements</ins>
 <div>deploy site</div>
 <div>-deployed on github pages</div>
-is responsive
--changes sizes based on mobile and desktop through css
-uses 2 different apis
--uses swapi and starwars-visualguide api
-has search
--has search at the top of the screen for character list
-displays results
--displayes the list to the user in the html table
-results are filterable
--the search filters the entire list of characters to help the user utilize the search in order to find a character
+<div>is responsive</div>
+<div>-changes sizes based on mobile and desktop through css</div>
+<div>uses 2 different apis</div>
+<div>-uses swapi and starwars-visualguide api</div>
+<div>has search</div>
+<div>-has search at the top of the screen for character list</div>
+<div>displays results</div>
+<div>-displayes the list to the user in the html table</div>
+<div>results are filterable</div>
+<div>-the search filters the entire list of characters to help the user utilize the search in order to find a character</div>
