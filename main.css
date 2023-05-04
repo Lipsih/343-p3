@@ -1,11 +1,24 @@
+@import url('https://fonts.cdnfonts.com/css/star-wars');
+
 * {
     font-family: Arial, Helvetica, sans-serif;
+    background-color: black;
+    color: #FFE81F;
+    border-color: white;
+}
+
+h1 {
+    font-family: 'Star Wars', sans-serif;
+}
+
+ul {
+    list-style-type: none;
 }
 
 table {
     width: 100%;
     border-radius: .5rem;
-    box-shadow: 0 2px 1px -1px #0003, 0 1px 1px #00000024, 0 1px 3px #0000001f;
+    box-shadow: 0 2px 1px -1px white, 0 1px 1px #fffffffe, 0 1px 3px #fffffffd;
     border-collapse: collapse;
 }
 thead {
@@ -17,13 +30,15 @@ th, td {
 th {
     text-align: start;
     font-weight: 600;
-    background-color: lightgray;
+    background-color: gray;
 }
-tbody tr:hover {
-    background-color: #b3d4fc;
+
+tbody td:hover {
+    background-color: #2719C7;
 }
+
 tr {
-    border-bottom: 1px solid #0000001f;
+    border-bottom: 1px solid gray;
     cursor: pointer;
 }
 
@@ -35,7 +50,7 @@ input {
     outline: none;
 }
 input:focus {
-    border: 2px solid rgb(59 130 246 / 0.5);
+    border: 2px solid #2FF924;
 }
 @media screen and (max-width: 800px) {
     .hide-on-mobile {
@@ -65,8 +80,18 @@ input:focus {
 }
 
 .page-btns:hover {
-    background-color: #0000003a;
+    background-color: #2719C7;
 }
+
+.material-symbols-outlined {
+    padding: 5px 5px 5px 5px;
+    border-radius: 10px;
+}
+
+.material-symbols-outlined:hover {
+    background-color: #2719C7;
+}
+
 .page-num {
     font-size: 24px;
     margin: 0 .5rem 0 .5rem;
