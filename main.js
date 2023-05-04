@@ -39,7 +39,24 @@ nextPageBtn.addEventListener("click", function() {
     closeCharacter();
   });
   
-  
+  function getImage(num, callback) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', `https://starwars-visualguide.com/assets/img/characters/${num}.jpg`, true);
+    xhr.responseType = 'blob';
+
+    xhr.onload = function(e) {
+        if (this.status == 200) {
+            // Create a new <img> element and set its source to the downloaded image
+            var imageUrl = URL.createObjectURL(this.response);
+            callback(imageUrl);
+        } else {
+            var imageUrl = "404"
+            callback(imageUrl);
+        }
+    };
+
+    xhr.send();
+    }
 
   function getCharacters(startPage, getAll) {
     return new Promise((res, rej) => {
@@ -132,23 +149,30 @@ function getCharactersAtPage(p) {
 function viewCharacter(c) {
     characterView.classList.remove("hidden");
     searchView.classList.add("hidden");
-
-    if(characterCache.indexOf(c) < 16) {
-        characterImage.setAttribute("src", `${imgAPI}${characterCache.indexOf(c) + 1}.jpg`);
-
+    let imageNum = characterCache.indexOf(c) + 1
+    if(imageNum < 17) {
+        getImage(imageNum, function(imageUrl) {
+            characterImage.setAttribute("src", imageUrl);
+        });
     } else {
-        characterImage.setAttribute("src", `${imgAPI}${characterCache.indexOf(c) + 2}.jpg`);
+        getImage(imageNum + 1, function(imageUrl) {
+            characterImage.setAttribute("src", imageUrl);
+        });
     }
-
-    characterFacts.innerHTML = "";
     
-    // add the list of facts as a span
-
+    for (var key in c) {
+        if (c.hasOwnProperty(key)) {
+            var listItem = document.createElement("li");
+            listItem.innerHTML = "<strong>" + key + ":</strong> " + c[key];
+            characterFacts.appendChild(listItem);
+        }
+    }
 }
 
 function closeCharacter() {
     searchView.classList.remove("hidden");
     characterView.classList.add("hidden");
+    characterFacts.innerHTML = "";
 }
 getCharacters(1, true).then(d => {
     characterCache.push(...d);
