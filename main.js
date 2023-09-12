@@ -172,6 +172,7 @@ function viewCharacter(c) {
 function closeCharacter() {
     searchView.classList.remove("hidden");
     characterView.classList.add("hidden");
+    characterImage.setAttribute("src", "");
     characterFacts.innerHTML = "";
 }
 getCharacters(1, true).then(d => {
